@@ -19,6 +19,7 @@
         }
 
           if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = trim(filter_input(INPUT_POST, 'entryid', FILTER_SANITIZE_NUMBER_INT));
             $title = trim(filter_input(INPUT_POST,'title', FILTER_SANITIZE_STRING));
             $date = trim(filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING));
             $time_spent = trim(filter_input(INPUT_POST, 'timeSpent', FILTER_SANITIZE_STRING));
@@ -49,6 +50,7 @@
                       <?php 
                          $store = get_project($id);
                       ?>
+                        <input type = "hidden" value = "<?php echo $id?>" name="entryid"/>
                         <label for="title"> Title</label>
                         <input id="title" type="text" name="title" value="<?php echo $store[0]["title"] ?>"/><br>
                         <label for="date">Date</label>
